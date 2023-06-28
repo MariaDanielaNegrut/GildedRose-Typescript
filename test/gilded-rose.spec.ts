@@ -111,4 +111,86 @@ describe('Unit tests', function () {
         expect(items[4].quality).to.equal(6);
         expect(items[5].quality).to.equal(0);
     });
+
+    it("Test update for special item Aged Brie", function () {
+        const gildedRose: GildedRose = new GildedRose([
+            new Item('Aged Brie', 10, 10),
+            new Item('Aged Brie', 10, 49),
+            new Item('Aged Brie', 10, 50),
+            new Item('Aged Brie', 0, 10),
+            new Item('Aged Brie', 0, 49),
+            new Item('Aged Brie', 0, 50),
+        ]);
+
+        const items: Item[] = gildedRose.updateQuality();
+
+        expect(items[0].quality).to.equal(11);
+        expect(items[1].quality).to.equal(50);
+        expect(items[2].quality).to.equal(50);
+        expect(items[3].quality).to.equal(12);
+        expect(items[4].quality).to.equal(50);
+        expect(items[5].quality).to.equal(50);
+    })
+
+    it("Test update for special item Sulfuras", function () {
+        const gildedRose: GildedRose = new GildedRose([
+            new Item('Sulfuras, Hand of Ragnaros', 10, 1),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 1),
+            new Item('Sulfuras, Hand of Ragnaros', -3, 1),
+        ]);
+
+        const items: Item[] = gildedRose.updateQuality();
+
+        items.forEach((item: Item) => {
+            expect(item.quality).to.equal(1);
+        })
+
+        expect(items[0].sellIn).to.equal(10);
+        expect(items[1].sellIn).to.equal(0);
+        expect(items[2].sellIn).to.equal(-3);
+
+    })
+
+    it("Test update for special item Backstage Passes", function () {
+        const gildedRose: GildedRose = new GildedRose([
+            new Item('Backstage passes to a TAFKAL80ETC concert', 11, 0),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 11, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 11, 50),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 0),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 50),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 6, 0),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 6, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 6, 50),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 0),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 50),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 1, 0),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 1, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 1, 50),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 0, 40),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 0, 50),
+        ]);
+
+        const items: Item[] = gildedRose.updateQuality();
+
+        expect(items[0].quality).to.equal(1);
+        expect(items[1].quality).to.equal(50);
+        expect(items[2].quality).to.equal(50);
+        expect(items[3].quality).to.equal(2);
+        expect(items[4].quality).to.equal(50);
+        expect(items[5].quality).to.equal(50);
+        expect(items[6].quality).to.equal(2);
+        expect(items[7].quality).to.equal(50);
+        expect(items[8].quality).to.equal(50);
+        expect(items[9].quality).to.equal(3);
+        expect(items[10].quality).to.equal(50);
+        expect(items[11].quality).to.equal(50);
+        expect(items[12].quality).to.equal(3);
+        expect(items[13].quality).to.equal(50);
+        expect(items[14].quality).to.equal(50);
+        expect(items[15].quality).to.equal(0);
+        expect(items[16].quality).to.equal(0);
+    })
+
 })
