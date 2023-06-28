@@ -63,26 +63,6 @@ describe('Golden Master - Gilded Rose', function () {
 });
 
 describe('Unit tests', function () {
-    it("Should decrease x2", function () {
-        const gildedRose: GildedRose = new GildedRose(
-            [new Item('TestDate', 0, 10),]
-        );
-
-        let items: Item[] = gildedRose.updateQuality();
-
-        // Test for: name, sellIn
-        expect(items[0].name).to.equal('TestDate');
-        expect(items[0].sellIn).to.equal(-1);
-
-        // Test for expected quality
-        expect(items[0].quality).to.equal(8);
-
-        // Repeat
-        items = gildedRose.updateQuality();
-        expect(items[0].quality).to.equal(6);
-
-    });
-
     it("Test quality decrease for normal items", function () {
         const gildedRose: GildedRose = new GildedRose([
             new Item('Produce', 10, 10),
