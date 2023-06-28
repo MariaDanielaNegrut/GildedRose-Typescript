@@ -173,4 +173,37 @@ describe('Unit tests', function () {
         expect(items[16].quality).to.equal(0);
     })
 
+    it("Test update for special item Conjured Mana Cake", function () {
+        const gildedRose: GildedRose = new GildedRose([
+            new Item('Conjured Mana Cake', 10, 3),
+            new Item('Conjured Mana Cake', 10, 2),
+            new Item('Conjured Mana Cake', 10, 1),
+            new Item('Conjured Mana Cake', 10, 0),
+            new Item('Conjured Mana Cake', 0, 5),
+            new Item('Conjured Mana Cake', 0, 3),
+            new Item('Conjured Mana Cake', 0, 2),
+            new Item('Conjured Mana Cake', 0, 0),
+            new Item('Conjured Mana Cake', -3, 1),
+            new Item('Conjured Mana Cake', -3, 0),
+            new Item('Conjured Mana Cake', -3, 4),
+            new Item('Conjured Mana Cake', -3, 5),
+        ]);
+
+        const items: Item[] = gildedRose.updateQuality();
+
+        expect(items[0].quality).to.equal(1);
+        expect(items[1].quality).to.equal(0);
+        expect(items[2].quality).to.equal(0);
+        expect(items[3].quality).to.equal(0);
+
+        expect(items[4].quality).to.equal(1);
+        expect(items[5].quality).to.equal(0);
+        expect(items[6].quality).to.equal(0);
+        expect(items[7].quality).to.equal(0);
+
+        expect(items[8].quality).to.equal(0);
+        expect(items[9].quality).to.equal(0);
+        expect(items[10].quality).to.equal(0);
+        expect(items[11].quality).to.equal(1);
+    })
 })
